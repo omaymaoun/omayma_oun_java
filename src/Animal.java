@@ -3,6 +3,8 @@ public class Animal {
     String Name;
     int age;
     boolean isMammal;
+
+    Animal[] animals;
     Animal( String family, String Name, int age, boolean isMammal){
 this.family=family;
 this.Name=Name;
@@ -16,8 +18,11 @@ this.isMammal=isMammal;
     }
 
     public String to_String() {
+
         return "family:" + family + " , animal:" + Name +  ", age:" + age;
     }
+
+
 
 
 }
