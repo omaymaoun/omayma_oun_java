@@ -10,7 +10,7 @@ public non-sealed class Aquatique  extends Animal{
         super(family, Name, age, isMammal);
         this.habitat=habitat;;
     }
-    public String toString() {  // Correctly naming the method
+    public String toString() {  
         return super.toString() + ", habitat: " + habitat;
 
     }
