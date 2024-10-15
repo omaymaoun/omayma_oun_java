@@ -1,7 +1,9 @@
 
 package tn.esprit.gestionzoo.main;
-import tn.esprit.gestionzoo.entities.Animal;
-import tn.esprit.gestionzoo.entities.Zoo;
+import tn.esprit.gestionzoo.entities.*;
+
+import javax.xml.transform.TransformerFactoryConfigurationError;
+import java.util.TreeSet;
 
 public class Main {
     public static void main(String[] args) {
@@ -11,7 +13,7 @@ public class Main {
 
         Zoo z1 = new Zoo("zoo1", "Tunis");
         Zoo z2 = new Zoo("Zoo2", "Bizerte");
-        myzoo.setName("    ");
+        myzoo.setName("");
         //myzoo.setName("tn.esprit.gestionzoo.entities.Zoo de tunis");
         //crer des animaux
         Animal a1 = new Animal("la7em", "tigre", 20, false);
@@ -19,6 +21,7 @@ public class Main {
         Animal a3= new Animal("la7em", "gazelle", 10, true);
         //Animal a4= new Animal("3acheb", "bhim", 10, true);
         //Animal a5 = new Animal("la7em", "tigre", 20, false);
+
         //ajout des animaux
         System.out.println("ajout de animal numero 1:" +myzoo.addAnimal(a1));
         System.out.println("ajout de animal numero 2:" +myzoo.addAnimal(a2));
@@ -45,7 +48,27 @@ public class Main {
         // Comparer les deux zoos pour savoir lequel a le plus d'animaux
         Zoo zooPlusPeuple = Zoo.comparerZoo(z1, z2);
         System.out.println("Le zoo avec le plus d'animaux est : " + zooPlusPeuple.getName());
+
+
+        Aquatique aquatic=new Aquatique("fish","bouri",5,false,"20");
+        Dolphin dolphin=new Dolphin("Delphinidae","ocra",10,true,"14");
+        Penguin penguin=new Penguin("Spheniscidae","Aqua",5,false,100,"18");
+        Terrestre terrestre=new Terrestre("carnivore","vache",7,false);
+
+        System.out.println(aquatic);
+        System.out.println(terrestre);
+        System.out.println(dolphin);
+        System.out.println(penguin);
+
+
+        Aquatique.swim();
+        Dolphin.swim();
+        Penguin.swim();
+
+
     }
+
+
 }
 
 

@@ -59,7 +59,7 @@ public class Zoo {
     public void afficher_animaux() {
         for (int i = 0; i < nb_animal; i++) {
             if (animals[i] != null) {
-                System.out.println(animals[i].to_String()); // Appelle la méthode toString() de Animal
+                System.out.println(animals[i].toString()); // Appelle la méthode toString() de Animal
             } else {
                 System.out.println("Animal à l'index " + i + " est null");
             }

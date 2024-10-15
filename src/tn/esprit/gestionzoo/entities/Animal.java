@@ -1,6 +1,6 @@
 package tn.esprit.gestionzoo.entities;
 
-public class Animal {
+public sealed class Animal permits Aquatique, Terrestre {
     private String family;
     private String Name;
     private int age;
@@ -13,15 +13,22 @@ this.Name=Name;
 this.age=age;
 this.isMammal=isMammal;
     }
+
+    public Animal() {
+    }
+
     public void display_animal() {
         System.out.println(" name of famille:" + family);
         System.out.println("name of animal:" + Name);
         System.out.println("age of animal :" + age);
     }
 
-    public String to_String() {
+    public String toString() {
+        //return "Animal{ Family:" + family + ", Name: " + Name + ", Age: " + age + ", isMammal: " + isMammal + "}";
 
-        return "family:" + family + " , animal:" + Name +  ", age:" + age;
+            return "family:" + family + " , animal:" + Name +  ", age:" + age;
+
+
     }
 //getters et setters
     public int getAge() {
@@ -61,5 +68,9 @@ this.isMammal=isMammal;
     public void setMammal(boolean mammal) {
         isMammal = mammal;
     }
+
+
+
+
 }
 
