@@ -11,6 +11,7 @@ public class Main {
         Animal lion = new Animal("la7em", "lion", 15, true);
         Zoo myzoo = new Zoo("bilfidar","tunis");
 
+
         Zoo z1 = new Zoo("zoo1", "Tunis");
         Zoo z2 = new Zoo("Zoo2", "Bizerte");
         myzoo.setName("");
@@ -19,6 +20,9 @@ public class Main {
         Animal a1 = new Animal("la7em", "tigre", 20, false);
         Animal a2 = new Animal("la7em", "giraffe", 21, true);
         Animal a3= new Animal("la7em", "gazelle", 10, true);
+
+
+
         //Animal a4= new Animal("3acheb", "bhim", 10, true);
         //Animal a5 = new Animal("la7em", "tigre", 20, false);
 
@@ -52,13 +56,16 @@ public class Main {
 
         Aquatique aquatic=new Aquatique("fish","bouri",5,false,"20");
         Dolphin dolphin=new Dolphin("Delphinidae","ocra",10,true,"14");
-        Penguin penguin=new Penguin("Spheniscidae","Aqua",5,false,100,"18");
+        Penguin penguin=new Penguin("Spheniscidae","Aqua",5,false,50.2f,"18");
+        Penguin penguin2=new Penguin("7ott","bouri",10,false,20.4f,"20");
+
         Terrestre terrestre=new Terrestre("carnivore","vache",7,false);
 
         System.out.println(aquatic);
         System.out.println(terrestre);
         System.out.println(dolphin);
         System.out.println(penguin);
+        System.out.println(penguin2);
 
 
         Aquatique.swim();
@@ -66,7 +73,27 @@ public class Main {
         Penguin.swim();
 
 
+
+        myzoo.addAnimal(dolphin);
+        myzoo.addAquaticAnimal(penguin);
+        myzoo.addAquaticAnimal(penguin2);
+        myzoo.addAquaticAnimal(dolphin);
+
+        myzoo.displayAnimals();
+
+        System.out.println("La profondeur maximale des pingouins est : " + myzoo.maxPenguinSwimmingDepth() + " mètres."); // Appel sur l'instance
+        myzoo.displayNumberOfAquaticsByType();
+
+
+
+
+
+
     }
+
+
+
+
 
 
 }
