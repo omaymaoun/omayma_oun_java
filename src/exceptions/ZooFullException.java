@@ -1,7 +1,6 @@
-package tn.esprit.gestionzoo.exceptions;
-package tn.esprit.gestionzoo.exceptions.ZooFullException;
+package exceptions;
 
- class ZooFullException extends Exception {
+ public class ZooFullException extends Exception {
      public ZooFullException (String message){
             super(message);
 

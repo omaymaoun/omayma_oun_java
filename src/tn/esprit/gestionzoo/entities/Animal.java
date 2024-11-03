@@ -1,16 +1,19 @@
 package tn.esprit.gestionzoo.entities;
 
+import exceptions.InvalidAgeException;
+
 public sealed class Animal permits Aquatique, Terrestre {
     private String family;
     private String Name;
     private int age;
    private boolean isMammal;
+    private int nbrAnimals;
 
     Animal[] animals;
-    public Animal( String family, String Name, int age, boolean isMammal){
+    public Animal( String family, String Name, int age, boolean isMammal)throws InvalidAgeException{
 this.family=family;
 this.Name=Name;
-this.age=age;
+setAge(age);
 this.isMammal=isMammal;
     }
 
@@ -35,9 +38,9 @@ this.isMammal=isMammal;
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(int age) throws InvalidAgeException {
         if(age<0) {
-            System.out.println("age est negatif!!!!!!!!!");
+           throw new InvalidAgeException("age est negatif!!!!!!!!!");
         }else{
             this.age=age;
         }

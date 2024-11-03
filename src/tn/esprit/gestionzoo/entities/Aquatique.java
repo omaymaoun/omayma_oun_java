@@ -1,4 +1,5 @@
 package tn.esprit.gestionzoo.entities;
+import exceptions.InvalidAgeException;
 
 public non-sealed class Aquatique  extends Animal{
     protected  String habitat ;
@@ -6,23 +7,34 @@ public non-sealed class Aquatique  extends Animal{
     public Aquatique(String dolphine) {
 
     }
-    public Aquatique(String family, String Name, int age, boolean isMammal,String habitat) {
+    public Aquatique(String family, String Name, int age, boolean isMammal,String habitat) throws InvalidAgeException {
         super(family, Name, age, isMammal);
-        this.habitat=habitat;;
+        this.habitat=habitat;
     }
-<<<<<<< HEAD
 
-   
-    public String toString() {
-=======
     public String toString() {  
->>>>>>> d65d74fd929712c84d10b5e73b2bc5366a5a9bc6
+
         return super.toString() + ", habitat: " + habitat;
 
     }
     public static void swim(){
         System.out.println("This aquatic animal is swimming");
     }
+
+    public boolean equals(Object obj) {
+        // Vérifie si les objets sont identiques (même référence)
+        if (this==obj) return true;
+
+        // Vérifie si l'objet est null
+        if (obj == null ||getClass()!=obj.getClass()) return false;
+        Aquatique other=(Aquatique)  obj;
+        return this.getName().equals(other.getName())&& this.getAge()==other.getAge()&& this.habitat.equals(other.habitat);
+
+
+
+    }
+
+
 
 
 

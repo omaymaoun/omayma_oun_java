@@ -1,19 +1,20 @@
 package tn.esprit.gestionzoo.entities;
-
+import exceptions.ZooFullException;
+import exceptions.InvalidAgeException;
 
 public class Zoo {
-    Aquatique[] aquaticAnimals; //declaration de tableau
+    Aquatique[] aquaticAnimals;
     Animal[] animals;
     private String name;
     private String city;
-    final int nbrCages = 25;
-    //compteur
+    final int nbrCages = 2;
     private int nb_animal = 0;
     private int nbr_aquatique = 0;
 
 
+
     public Zoo(String name, String city) {
-        animals = new Animal[25];//creation de tableau animal
+        animals = new Animal[nbrCages];
         aquaticAnimals = new Aquatique[10];
         this.name = name;
         this.city = city;
@@ -33,35 +34,27 @@ public class Zoo {
     }
 
 
-    public boolean addAnimal(Animal animal) {
-        int nb_max = 5; // Nombre maximal d'animaux
-        // Vérifier si le zoo est plein
-        if (isZooFull()) {
-            System.out.println("Le zoo est plein, impossible d'ajouter un animal !");
-            return false;  // Retourner false si le zoo est plein
-        }
 
-        // Vérifier si l'animal existe déjà
+
+    public void addAnimal(Animal animal) throws ZooFullException {
+
         if (searchAnimal(animal) != -1) {
-            System.out.println("L'animal existe déjà !");
-            return false;  // Retourner false si l'animal existe déjà
+            System.out.println("This animal already exists");
+            return;
         }
-
-        // Ajouter l'animal si le zoo n'est pas plein et l'animal n'existe pas déjà
-        if (nb_animal < nb_max) {
-            animals[nb_animal] = animal; // Ajouter l'animal dans le tableau
-            nb_animal++; // Incrémenter le nombre d'animaux
-            return true; // Retourner true si l'animal a été ajouté avec succès
+        if (nb_animal >= animals.length) {
+            throw new ZooFullException("The Zoo is full");
         }
-
-        return false; // Retourner false en cas d'erreur imprévue
+        animals[nb_animal] = animal;
+        nb_animal++;
     }
+
 
 
     public void afficher_animaux() {
         for (int i = 0; i < nb_animal; i++) {
             if (animals[i] != null) {
-                System.out.println(animals[i].toString()); // Appelle la méthode toString() de Animal
+                System.out.println(animals[i].toString());
             } else {
                 System.out.println("Animal à l'index " + i + " est null");
             }
@@ -72,14 +65,12 @@ public class Zoo {
 
     public int searchAnimal(Animal animal) {
 
-        for (int i = 0; i < nb_animal; i++) {
+        for (int i = 0; i < nb_animal; i++)
             if (animals[i].getName() == animal.getName()) {
                 System.out.println("animal est de indice:" + i);
                 return i;
 
             }
-
-        }
 
         return -1;
 
@@ -88,32 +79,27 @@ public class Zoo {
 
 
     public boolean removeAnimal(Animal animal) {
-        // Cherche l'animal dans le zoo
         int index = searchAnimal(animal);
-
         if (index == -1) {
             System.out.println("Cet animal n'existe pas dans le zoo.");
             return false; // L'animal n'a pas été trouvé
         }
-
-        // Décale les animaux pour combler le vide
         for (int i = index; i < nb_animal - 1; i++) {
             animals[i] = animals[i + 1]; // Décalage vers la gauche
         }
-
-        animals[nb_animal - 1] = null; // Supprime la dernière référence
-        nb_animal--; // Réduit le compteur d'animaux
+        animals[nb_animal - 1] = null;
+        nb_animal--;
         System.out.println("L'animal a été supprimé avec succès.");
-        return true; // Suppression réussie
+        return true;
     }
 
     public boolean isZooFull() {
-        int nb_max = 5;  // Capacité maximale du zoo
-        if (nb_animal >= nb_max) {  // Si le nombre d'animaux atteint ou dépasse la capacité
+        int nb_max = 5;
+        if (nb_animal >= nb_max) {
             System.out.println("Le zoo est plein");
-            return true;  // Le zoo est plein
+            return true;
         } else {
-            return false;  // Le zoo n'est pas encore plein
+            return false;
         }
     }
 
@@ -125,7 +111,7 @@ public class Zoo {
             return z2;
         } else {
             System.out.println("Les deux zoos ont le même nombre d'animaux.");
-            return z1; // Peut retourner l'un ou l'autre, car ils sont égaux
+            return z1;
         }
     }
 
@@ -214,18 +200,15 @@ public class Zoo {
 
 
 
-    /*public boolean equals(Object obj) {
-        if (obj == this) return true;
-        if (obj == null) return false;
-        if (obj instanceof Aquatique aquatic) {
-            return aquatic.habitat.equals(aquatic.habitat) && aquatic.getName().equals(super.getClass()) && aquatic.getAge() == super.getClass(();
-        }
-        return false;
-    }
 
 
-*/
-    }
+
+
+
+
+
+
+}
 
 
 

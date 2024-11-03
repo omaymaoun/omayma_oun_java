@@ -1,49 +1,72 @@
 
 package tn.esprit.gestionzoo.main;
+
 import tn.esprit.gestionzoo.entities.*;
-
-import javax.xml.transform.TransformerFactoryConfigurationError;
-import java.util.TreeSet;
-
+import exceptions.ZooFullException;
+import exceptions.InvalidAgeException;
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ZooFullException   {
         // Initialisation des zoos
-        Animal lion = new Animal("la7em", "lion", 15, true);
-        Zoo myzoo = new Zoo("bilfidar","tunis");
-
+        Animal lion = null;
+        try {
+            lion = new Animal("la7em", "lion", 50, true);
+        } catch (InvalidAgeException e) {
+            throw new RuntimeException(e);
+        }
+        Zoo myzoo = new Zoo("bilfidar", "tunis");
 
         Zoo z1 = new Zoo("zoo1", "Tunis");
         Zoo z2 = new Zoo("Zoo2", "Bizerte");
-        myzoo.setName("");
-        //myzoo.setName("tn.esprit.gestionzoo.entities.Zoo de tunis");
-        //crer des animaux
-        Animal a1 = new Animal("la7em", "tigre", 20, false);
-        Animal a2 = new Animal("la7em", "giraffe", 21, true);
-        Animal a3= new Animal("la7em", "gazelle", 10, true);
+
+        // Créer des animaux
+        Animal a1 = null;
+        try {
+            a1 = new Animal("la7em", "tigre", 50, false);
+        } catch (InvalidAgeException e) {
+            throw new RuntimeException(e);
+        }
+        Animal a2 = null;
+        try {
+            a2 = new Animal("la7em", "giraffe", 21, true);
+        } catch (InvalidAgeException e) {
+            throw new RuntimeException(e);
+        }
+        Animal a3 = null;
+        try {
+            a3 = new Animal("la7em", "gazelle", 10, true);
+        } catch (InvalidAgeException e) {
+            throw new RuntimeException(e);
+        }
 
 
+        // Ajout des animaux
+        try {
+            myzoo.addAnimal(a1);
+        } catch (ZooFullException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            System.out.println(myzoo.getName() + " contient " + myzoo.getNb_animal() + " animaux");
+        }
+        try {
+            myzoo.addAnimal(a2);
+        } catch (ZooFullException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            System.out.println(myzoo.getName() + " contient " + myzoo.getNb_animal() + " animaux");
+        }
 
-        //Animal a4= new Animal("3acheb", "bhim", 10, true);
-        //Animal a5 = new Animal("la7em", "tigre", 20, false);
-
-        //ajout des animaux
-        System.out.println("ajout de animal numero 1:" +myzoo.addAnimal(a1));
-        System.out.println("ajout de animal numero 2:" +myzoo.addAnimal(a2));
-        System.out.println("ajout de animal numero 3:" +myzoo.addAnimal(a3));
-        //System.out.println("ajout de animal numero 4:" +myzoo.addAnimal(a4));
-        //System.out.println("ajout de animal numero 5:" +myzoo.addAnimal(a5));
-
-
-        // Ajouter des animaux dans le premier zoo (z1)
-        z1.addAnimal(new Animal("Lion", "Carnivore", 15, true));
-        z1.addAnimal(new Animal("Tigre", "Carnivore", 20, false));
-        z1.addAnimal(new Animal("kkkkk", "Carnivore", 15, true));
-
-        // Ajouter des animaux dans le deuxième zoo (z2)
-        z2.addAnimal(new Animal("Girafe", "Herbivore", 10, true));
-        z2.addAnimal(new Animal("Zèbre", "Herbivore", 12, true));
-        z2.addAnimal(new Animal("Éléphant", "Herbivore", 25, true));
-        z2.addAnimal(new Animal("Caméléon", "Herbivore", 5, true));
+        try {
+            myzoo.addAnimal(a3);
+        } catch (ZooFullException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            System.out.println(myzoo.getName() + " contient " + myzoo.getNb_animal() + " animaux");
+        }
+        try {
+            lion.setAge(8);
+        } catch (InvalidAgeException e) {
+            System.out.println(e.getMessage());
+        }
 
         // Afficher le nombre d'animaux
         System.out.println("Nombre d'animaux dans z1 : " + z1.getNb_animal());
@@ -54,12 +77,37 @@ public class Main {
         System.out.println("Le zoo avec le plus d'animaux est : " + zooPlusPeuple.getName());
 
 
-        Aquatique aquatic=new Aquatique("fish","bouri",5,false,"20");
-        Dolphin dolphin=new Dolphin("Delphinidae","ocra",10,true,"14");
-        Penguin penguin=new Penguin("Spheniscidae","Aqua",5,false,50.2f,"18");
-        Penguin penguin2=new Penguin("7ott","bouri",10,false,20.4f,"20");
+        Aquatique aquatic = null;
+        try {
+            aquatic = new Aquatique("fish", "bouri", -5, false, "20");
+        } catch (InvalidAgeException e) {
+            throw new RuntimeException(e);
+        }
+        Dolphin dolphin = null;
+        try {
+            dolphin = new Dolphin("Delphinidae", "ocra", 10, true, "14");
+        } catch (InvalidAgeException e) {
+            throw new RuntimeException(e);
+        }
+        Penguin penguin = null;
+        try {
+            penguin = new Penguin("Spheniscidae", "Aqua", 5, false, 50.2f, "18");
+        } catch (InvalidAgeException e) {
+            throw new RuntimeException(e);
+        }
+        Penguin penguin2 = null;
+        try {
+            penguin2 = new Penguin("7ott", "bouri", 10, false, 20.4f, "20");
+        } catch (InvalidAgeException e) {
+            throw new RuntimeException(e);
+        }
 
-        Terrestre terrestre=new Terrestre("carnivore","vache",7,false);
+        Terrestre terrestre = null;
+        try {
+            terrestre = new Terrestre("carnivore", "vache", 7, false);
+        } catch (InvalidAgeException e) {
+            throw new RuntimeException(e);
+        }
 
         System.out.println(aquatic);
         System.out.println(terrestre);
@@ -73,8 +121,11 @@ public class Main {
         Penguin.swim();
 
 
-
-        myzoo.addAnimal(dolphin);
+        try {
+            myzoo.addAnimal(dolphin);
+        } catch (ZooFullException e) {
+            throw new RuntimeException(e);
+        }
         myzoo.addAquaticAnimal(penguin);
         myzoo.addAquaticAnimal(penguin2);
         myzoo.addAquaticAnimal(dolphin);
@@ -85,19 +136,8 @@ public class Main {
         myzoo.displayNumberOfAquaticsByType();
 
 
-
-
-
-
     }
-
-
-
-
-
-
 }
-
 
 
 
