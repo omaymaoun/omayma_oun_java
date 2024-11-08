@@ -1,12 +1,18 @@
 package tn.esprit.gestionzoo.entities;
 import exceptions.InvalidAgeException;
+import interfaces.carnivore;
 
-public non-sealed class Aquatique  extends Animal{
+public non-sealed class Aquatique  extends Animal implements carnivore<Food>{
     protected  String habitat ;
 
-    public Aquatique(String dolphine) {
+
+
+
+    public void eatMeat(Food meat){
+        System.out.println("The Terrestrial " + getName() + " is eating " + meat);
 
     }
+
     public Aquatique(String family, String Name, int age, boolean isMammal,String habitat) throws InvalidAgeException {
         super(family, Name, age, isMammal);
         this.habitat=habitat;

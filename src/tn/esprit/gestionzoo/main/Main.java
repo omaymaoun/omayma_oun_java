@@ -4,8 +4,9 @@ package tn.esprit.gestionzoo.main;
 import tn.esprit.gestionzoo.entities.*;
 import exceptions.ZooFullException;
 import exceptions.InvalidAgeException;
+import tn.esprit.gestionzoo.entities.Food;
 public class Main {
-    public static void main(String[] args) throws ZooFullException   {
+    public static void main(String[] args) throws ZooFullException, InvalidAgeException {
         // Initialisation des zoos
         Animal lion = null;
         try {
@@ -37,7 +38,6 @@ public class Main {
         } catch (InvalidAgeException e) {
             throw new RuntimeException(e);
         }
-
 
         // Ajout des animaux
         try {
@@ -78,10 +78,12 @@ public class Main {
 
 
         Aquatique aquatic = null;
+
         try {
-            aquatic = new Aquatique("fish", "bouri", -5, false, "20");
+            aquatic = new Aquatique("fish", "bouri", 10, false, "20");
         } catch (InvalidAgeException e) {
             throw new RuntimeException(e);
+
         }
         Dolphin dolphin = null;
         try {
@@ -109,6 +111,10 @@ public class Main {
             throw new RuntimeException(e);
         }
 
+
+
+
+
         System.out.println(aquatic);
         System.out.println(terrestre);
         System.out.println(dolphin);
@@ -119,6 +125,7 @@ public class Main {
         Aquatique.swim();
         Dolphin.swim();
         Penguin.swim();
+        terrestre.eatPlant(Food.PLANT);
 
 
         try {
@@ -136,7 +143,36 @@ public class Main {
         myzoo.displayNumberOfAquaticsByType();
 
 
+        System.out.println("**************prosit8**********");
+
+        penguin = new Penguin("Felidae", "Tiger", 5, false, 50.2f, "18");
+        penguin.eatMeat(Food.MEAT);
+
+
+        aquatic = new Aquatique("Canidae", "Wolf", 16, false, "20");
+        aquatic.eatMeat(Food.MEAT);
+
+
+        terrestre = new Terrestre("Phascolarctidae", "Koala", 7, false);
+        terrestre.eatPlant(Food.PLANT);
+
+
+        terrestre = new Terrestre("Suidae", "pork", 7, false);
+        terrestre.eatPlantAndMeet(Food.BOTH);
+
+
+
+
+
+
+
     }
+
+
+
+
+
+
 }
 
 
