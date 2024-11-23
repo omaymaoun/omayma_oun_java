@@ -1,4 +1,4 @@
-
+package list;
 
 import java.util.List;
 public interface IGestion<T> {

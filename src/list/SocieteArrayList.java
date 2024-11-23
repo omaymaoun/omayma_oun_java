@@ -1,3 +1,6 @@
+package list;
+
+import list.Employe;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -5,7 +8,7 @@ import java.util.List;
 
 
 
- public  class SocieteArrayList implements IGestion <Employe>{
+ public  class SocieteArrayList implements IGestion<Employe> {
      private List<Employe> listeEmployes = new ArrayList<>();
 
      @Override
@@ -15,7 +18,11 @@ import java.util.List;
 
      @Override
      public boolean rechercherEmploye(String nom) {
-         return listeEmployes.stream().anyMatch(e -> e.getNom().equalsIgnoreCase(nom));
+         for (int i = 0; i < listeEmployes.size(); i++) {
+             if (listeEmployes.get(i).getNom().equals(nom))
+                 return true;
+         }
+         return false;
      }
 
      @Override

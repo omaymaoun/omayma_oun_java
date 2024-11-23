@@ -1,3 +1,4 @@
+package list;
 
 import java.util.Objects;
 public class Employe {
@@ -70,7 +71,7 @@ public void setGrade(int grade){
 
        public String toString(){
 
-           return "Employe{" + "id=" + id + ", nom='" + nom + '\'' + ", prenom='" + prenom + '\'' + ", nomDepartement='" + nomDepartement + '\'' + ", grade=" + grade + '}';
+           return "list.Employe{" + "id=" + id + ", nom='" + nom + '\'' + ", prenom='" + prenom + '\'' + ", nomDepartement='" + nomDepartement + '\'' + ", grade=" + grade + '}';
        }
 
 
