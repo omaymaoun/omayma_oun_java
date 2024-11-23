@@ -1,6 +1,4 @@
 
-
-
 import java.util.Objects;
 public class Employe {
     private int id;
